@@ -1,0 +1,36 @@
+alerta:
+  general:
+    python_script:
+      run: python /Users/mariuss/work/dev/runs/examples/scripts/run_alerta_test.py
+    bash_script:
+      run: bash /Users/mariuss/work/dev/runs/examples/scripts/run.sh
+  python:
+      run: python /Users/mariuss/work/dev/runs/examples/scripts/run.py
+      event: ScriptDown
+      service:
+        - File
+      text: Execute a print function
+      data: Check the server for details
+      environment: Development
+      status:
+        fail:
+          severity: critical
+          value: FileDown
+        success:
+          severity: normal
+          value: FileUp
+  bash:
+      run: bash /Users/mariuss/work/dev/runs/examples/scripts/run.sh
+      event: FileDown
+      service:
+        - File
+      text: Execute a echo function
+      data: Check the server for details
+      environment: Development
+      status:
+        fail:
+          severity: critical
+          value: FileDown
+        success:
+          severity: normal
+          value: FileUp
