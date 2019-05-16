@@ -9,10 +9,7 @@ COPY . /opt/
 
 WORKDIR  /opt
 
-COPY Pipfile Pipfile
-COPY Pipfile.lock Pipfile.lock
-
 RUN pip install pipenv
 RUN pipenv install --deploy --system
 
-CMD ["runs", "run"]
+CMD ["bash", "start.sh"]
