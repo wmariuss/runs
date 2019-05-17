@@ -25,7 +25,7 @@ Development
 
 ## Usage
 
-Currently this is `experiment` stage.
+Currently this is `beta` stage.
 
 * `pipenv run bash start.sh`
 * `pipenv run bash worker.sh`
