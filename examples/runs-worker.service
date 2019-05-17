@@ -1,0 +1,18 @@
+[Unit]
+Description=Execute any command and send the output to web services
+Documentation=https://github.com/wmariuss/runs.git
+After=network.target
+
+[Service]
+User=root
+Group=root
+Type=simple
+WorkingDirectory=/opt/runs
+ExecStart=celery worker -A runs.tasks --autoscale=10,3 --purge --loglevel=INFO
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+TimeoutStopSec=20s
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target
