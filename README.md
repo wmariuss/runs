@@ -12,6 +12,7 @@ When I can use this tool:
 
 * `Python >= 3.6`
 * Depends of the service you want to use you need `endpoint` and `token`
+* `redis >= 4.0.9`
 
 ## Install
 
@@ -27,6 +28,7 @@ Development
 
 Currently this is `beta` stage.
 
+* Create new `.env` file (example [here](env.template))
 * `pipenv run bash start.sh`
 * `pipenv run bash worker.sh`
 
