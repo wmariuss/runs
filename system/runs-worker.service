@@ -1,11 +1,14 @@
 [Unit]
 Description=Execute any command and send the output to web services
 Documentation=https://github.com/wmariuss/runs.git
+After=network.target
 
 [Service]
-User=root
+User=mariuss
+Group=mariuss
 Type=simple
-ExecStart=pipenv run bash start.sh
+WorkingDirectory=/opt/runs
+ExecStart=pipenv run bash worker.sh
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 TimeoutStopSec=20s

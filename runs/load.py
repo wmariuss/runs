@@ -18,7 +18,7 @@ class Config(object):
         for f in self.files():
             with open(f, 'r') as conf:
                 try:
-                    config = yaml.load(conf, Loader=yaml.FullLoader)
+                    config = yaml.safe_load(conf)
                     config_list.update(config)
                 except yaml.YAMLError:
                     logging.fatal('Config file parse error: {f}',
