@@ -1,6 +1,5 @@
 import os
 from glob import iglob
-from pathlib import Path
 import yaml
 import logging
 
