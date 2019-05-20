@@ -32,7 +32,7 @@ def send_events_alerta(name, command, event, service, environment,
 
     status = status_event.get('status')
 
-    if executed and '0' in executed:
+    if executed and '0' in executed or 'OK' in executed:
         if 'success' in status[name]:
             event_data.update(
                 {
