@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  runs:
+    container_name: runs
+    build: .
+    environment:
+      - ALERTA_ENDPOINT=
+      - ALERTA_KEY=
+      - CONFIGS_PATH=examples
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+      - SCHEDULER_INTERVAL=2
+    ports:
+      - "8000:8000"
+    command: ["bash", "start.sh"]
+    networks:
+      - runs-net
+    depends_on:
+      - redis
+    restart: always
+  redis:
+    container_name: redis
+    image: redis:latest
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - runs-net
+    restart: always
+
+networks:
+  runs-net:
+    driver: "bridge"
+
+volumes:
+  redis-data:

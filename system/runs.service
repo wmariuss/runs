@@ -1,6 +1,7 @@
 [Unit]
 Description=Execute any command and send the output to web services
 Documentation=https://github.com/wmariuss/runs.git
+After=network.target
 
 [Service]
 User=mariuss

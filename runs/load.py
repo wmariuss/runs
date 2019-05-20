@@ -1,5 +1,6 @@
 import os
 from glob import iglob
+from pathlib import Path
 import yaml
 import logging
 
@@ -8,7 +9,7 @@ class Config(object):
     def __init__(self, path=None):
         self.current_dir = os.path.dirname(__file__)
         self.path = path or os.environ.get('CONFIGS_PATH', '~/runs')
-        self.files_list = iglob(f'{self.path}/*.yml')
+        self.files_list = iglob(f'{self.path}/*.yaml', recursive=True)
 
     def files(self):
         return [files for files in self.files_list]
