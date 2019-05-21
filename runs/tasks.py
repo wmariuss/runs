@@ -4,6 +4,7 @@ import logging
 
 from runs.services.alerta import AlertaClient
 from runs.utils import Execute
+from runs.exceptions import TaskExceptions
 
 # Move these variables to a global file
 CELERY_BROKER = os.environ.get('CELERY_BROKER', 'redis://localhost:6379/0')
@@ -32,31 +33,34 @@ def send_events_alerta(name, command, event, service, environment,
 
     status = status_event.get('status')
 
-    if executed and '0' in executed or 'OK' in executed:
-        if 'success' in status[name]:
-            event_data.update(
-                {
-                    'severity': status[name]['success']['severity'],
-                    'value': status[name]['success']['value']
-                }
-            )
+    try:
+        if executed and '0' in executed or 'OK' in executed:
+            if 'success' in status[name]:
+                event_data.update(
+                    {
+                        'severity': status[name]['success']['severity'],
+                        'value': status[name]['success']['value']
+                    }
+                )
+        else:
+            if 'fail' in status[name]:
+                event_data.update(
+                    {
+                        'severity': status[name]['fail']['severity'],
+                        'value': status[name]['fail']['value']
+                    }
+                )
+    except Exception as err:
+        raise TaskExceptions(err)
     else:
-        if 'fail' in status[name]:
-            event_data.update(
-                {
-                    'severity': status[name]['fail']['severity'],
-                    'value': status[name]['fail']['value']
-                }
-            )
-
-    alerta.send_event(resource=event_data.get('resource'),
-                      event=event_data.get('event'),
-                      environment=event_data.get('environment'),
-                      service=event_data.get('service'),
-                      text=event_data.get('text'),
-                      value=event_data.get('value'),
-                      severity=event_data.get('severity'),
-                      raw_data=event_data.get('data'))
+        alerta.send_event(resource=event_data.get('resource'),
+                          event=event_data.get('event'),
+                          environment=event_data.get('environment'),
+                          service=event_data.get('service'),
+                          text=event_data.get('text'),
+                          value=event_data.get('value'),
+                          severity=event_data.get('severity'),
+                          raw_data=event_data.get('data'))
     return executed
 
 
