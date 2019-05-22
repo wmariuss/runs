@@ -36,22 +36,22 @@ def send_events_alerta(name, command, event, service, environment,
     try:
         if executed and '0' in executed or 'OK' in executed:
             if 'success' in status[name]:
-                event_data.update(
-                    {
+                event_data.update({
                         'severity': status[name]['success']['severity'],
                         'value': status[name]['success']['value']
-                    }
-                )
+                    })
         else:
             if 'fail' in status[name]:
-                event_data.update(
-                    {
+                event_data.update({
                         'severity': status[name]['fail']['severity'],
                         'value': status[name]['fail']['value']
-                    }
-                )
+                    })
     except Exception as err:
-        raise TaskExceptions(err)
+        raise TaskExceptions({
+                'Name': name,
+                'Command': command,
+                'Error': err
+            })
     else:
         alerta.send_event(resource=event_data.get('resource'),
                           event=event_data.get('event'),

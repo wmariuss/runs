@@ -1,6 +1,0 @@
-alerta:
-  general:
-    Python:
-      run: python /Users/mariuss/work/dev/runs/examples/scripts/run_alerta_test.py
-    Bash:
-      run: bash /Users/mariuss/work/dev/runs/examples/scripts/run.sh
