@@ -4,20 +4,34 @@ services:
     container_name: runs
     build: .
     environment:
-      - ALERTA_ENDPOINT=
-      - ALERTA_KEY=
+      - ALERTA_ENDPOINT=https://alerta.dsa.smctr.net/api
+      - ALERTA_KEY=3CiJ2kxKdKp6iZJ61SXK71B8ch1Ym1owHtFjOoAP
       - CONFIGS_PATH=examples
       - CELERY_BROKER=redis://redis:6379/0
       - CELERY_BACKEND=redis://redis:6379/0
       - SCHEDULER_INTERVAL=2
     ports:
       - "8000:8000"
-    command: ["bash", "start.sh"]
     networks:
       - runs-net
     depends_on:
       - redis
     restart: always
+
+  runs-worker:
+    container_name: runs-worker
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      - CELERY_BROKER=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
+    networks:
+      - runs-net
+    depends_on:
+      - redis
+    restart: always
+
   redis:
     container_name: redis
     image: redis:latest

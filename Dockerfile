@@ -15,4 +15,4 @@ RUN pipenv install --deploy --system
 
 EXPOSE 8000
 
-CMD ["bash", "start.sh"]
+CMD ["bash", "start.sh", "docker"]

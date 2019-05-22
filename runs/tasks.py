@@ -47,11 +47,11 @@ def send_events_alerta(name, command, event, service, environment,
                         'value': status[name]['fail']['value']
                     })
     except Exception as err:
-        raise TaskExceptions({
+        logging.error({
                 'Name': name,
                 'Command': command,
                 'Error': err
-            })
+            }, exc_info=True)
     else:
         alerta.send_event(resource=event_data.get('resource'),
                           event=event_data.get('event'),
