@@ -4,8 +4,8 @@ services:
     container_name: runs
     build: .
     environment:
-      - ALERTA_ENDPOINT=https://alerta.dsa.smctr.net/api
-      - ALERTA_KEY=3CiJ2kxKdKp6iZJ61SXK71B8ch1Ym1owHtFjOoAP
+      - ALERTA_ENDPOINT=
+      - ALERTA_KEY=
       - CONFIGS_PATH=examples
       - CELERY_BROKER=redis://redis:6379/0
       - CELERY_BACKEND=redis://redis:6379/0
