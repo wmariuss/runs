@@ -24,6 +24,8 @@ services:
       context: .
       dockerfile: Dockerfile.worker
     environment:
+      - ALERTA_ENDPOINT=
+      - ALERTA_KEY=
       - CELERY_BROKER=redis://redis:6379/0
       - CELERY_BACKEND=redis://redis:6379/0
     networks:

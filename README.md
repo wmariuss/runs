@@ -8,6 +8,11 @@ When I can use this tool:
 * I send the output to different web services
 * I want all tasks to be executed in parallel
 
+## Services
+
+* [x] Alerta (monitoring and alerting)
+* [ ] More soon
+
 ## Requirements
 
 * `Python >= 3.6`
@@ -34,7 +39,12 @@ Currently this is `beta` stage.
 
 ## Tests
 
-Very soon.
+Soon.
+
+## Contribute
+
+* Have you an issue, idea or anything related to this project, open new [issue](https://github.com/wmariuss/runs/issues)
+* if you have improvements to the code or you want to add new feature(s), please open a Pull request and add code owners for review
 
 ## Authors
 
