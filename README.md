@@ -21,8 +21,6 @@ When I can use this tool:
 
 ## Install
 
-For easy deployment this is built as executable. You can download it from [release](https://github.com/wmariuss/runs/releases) section.
-
 Development
 
 * `pip install pipenv`
@@ -43,8 +41,7 @@ Soon.
 
 ## Contribute
 
-* Have you an issue, idea or anything related to this project, open new [issue](https://github.com/wmariuss/runs/issues)
-* if you have improvements to the code or you want to add new feature(s), please open a Pull request and add code owners for review
+Contributions are always welcome. Please fork the repo, create a pull request against master, and be sure tests pass. See the [GitHub Flow](https://guides.github.com/introduction/flow/) for details.
 
 ## Authors
 
