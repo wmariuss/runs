@@ -48,7 +48,7 @@ def send_events_alerta(name, command, event, service, environment,
                         'value': status[name]['fail']['value']
                     })
     except TypeError:
-        logging.error(f'Script or command executed has stdour errors.\
+        logging.error(f'Script or command executed has stdout errors.\
                       Please check {name}')
     finally:
         alerta.send_event(resource=event_data.get('resource'),
