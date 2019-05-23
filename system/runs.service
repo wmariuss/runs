@@ -5,9 +5,9 @@ After=network.target
 
 [Service]
 User=mariuss
-Group=romariussot
+Group=mariuss
 Type=simple
-ExecStart=pipenv run bash start.sh
+ExecStart=pipenv run bash start.sh local
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 TimeoutStopSec=20s
