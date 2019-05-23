@@ -20,21 +20,22 @@ def send_events_alerta(name, command, event, service, environment,
                        text, data, **status_event):
 
     alerta = AlertaClient()
-    executed = execute.cmd(command)
-
     event_data = {
             'resource': name,
             'event': event,
             'environment': environment,
             'service': service,
             'text': text,
-            'data': data
+            'data': data,
+            'severity': 'critical',
+            'value': 'N/A'
         }
 
     status = status_event.get('status')
+    executed = execute.cmd(command)
 
     try:
-        if executed and '0' in executed or 'OK' in executed:
+        if '0' in executed or 'OK' in executed:
             if 'success' in status[name]:
                 event_data.update({
                         'severity': status[name]['success']['severity'],
@@ -46,13 +47,10 @@ def send_events_alerta(name, command, event, service, environment,
                         'severity': status[name]['fail']['severity'],
                         'value': status[name]['fail']['value']
                     })
-    except Exception as err:
-        raise TaskExceptions({
-                'Name': name,
-                'Command': command,
-                'Error': err
-            })
-    else:
+    except TypeError:
+        logging.error(f'Script or command executed has stdour errors.\
+                      Please check {name}')
+    finally:
         alerta.send_event(resource=event_data.get('resource'),
                           event=event_data.get('event'),
                           environment=event_data.get('environment'),
