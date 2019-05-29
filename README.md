@@ -4,7 +4,7 @@ Execute, take the output of any script file or command and send it to different 
 
 When I can use this tool:
 
-* I execute script(s) file(s) or command(s) as task(s) (schedule task(s) as well)
+* I execute script file(s) or command(s) as task(s) (schedule task(s) as well)
 * I send the output to different web services
 * I want all tasks to be executed in parallel
 
