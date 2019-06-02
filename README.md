@@ -1,6 +1,6 @@
 # runs
 
-Execute, take the output of any script file or command and send it to different web services.
+Execute any script file or command as job and send the result to different web services.
 
 When I can use this tool:
 
