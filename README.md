@@ -41,7 +41,13 @@ Soon.
 
 ## Contribute
 
-Contributions are always welcome. Please fork the repo, create a pull request against master, and be sure tests pass. See the [GitHub Flow](https://guides.github.com/introduction/flow/) for details.
+Contributions are always welcome.
+
+* Fork the repo
+* Create a pull request against master
+* Be sure tests pass (if exists)
+
+Check [GitHub Flow](https://guides.github.com/introduction/flow/) for details.
 
 ## Authors
 
