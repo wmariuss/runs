@@ -10,8 +10,7 @@ When I can use this tool:
 
 ## Services
 
-* [x] Alerta (monitoring and alerting)
-* [ ] More soon
+Check [docs](docs/) dir for available services.
 
 ## Requirements
 
@@ -25,11 +24,9 @@ Development
 
 * `pip install pipenv`
 * `pipenv install --dev`
-* `pipenv run bash start.sh`
+* `pipenv run bash start.sh local`
 
 ## Usage
-
-Currently this is `beta` stage.
 
 * Create new `.env` file (example [here](env.template))
 * `pipenv run bash start.sh`

@@ -7,8 +7,7 @@ from runs.serve import Index
 from runs.runs import Run
 
 start = Run()
-interval = os.environ.get('SCHEDULER_INTERVAL', 240)
-print(interval)
+interval = os.environ.get('SCHEDULER_INTERVAL', 60)
 
 
 def tasks():
