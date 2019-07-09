@@ -10,8 +10,7 @@ When I can use this tool:
 
 ## Services
 
-* [x] Alerta (monitoring and alerting)
-* [ ] More soon
+Check [docs](docs/) dir for available services.
 
 ## Requirements
 
