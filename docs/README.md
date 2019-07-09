@@ -1,5 +1,5 @@
 # Docs
 
-## Content
+## CONTENT
 
 * [Alerta](content/alerta.md)
