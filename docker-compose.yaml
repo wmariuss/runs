@@ -25,9 +25,6 @@ services:
 
   runs-worker:
     container_name: runs-worker
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile.worker
     build: .
     command: bash worker.sh docker
     env_file:
