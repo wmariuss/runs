@@ -33,7 +33,7 @@ Docker
 
 Local
 
-* * Copy `env.example` to `.env`
+* Copy `env.example` to `.env`
 * `pipenv run bash start.sh local`
 * `pipenv run bash worker.sh local`
 
