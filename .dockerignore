@@ -1,4 +1,7 @@
 .git
 .vscode
 Dockerfile
+.dockerignore
+examples
 .env
+.env.docker
