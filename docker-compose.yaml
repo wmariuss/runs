@@ -3,40 +3,48 @@ services:
   runs:
     container_name: runs
     build: .
-    environment:
-      - ALERTA_ENDPOINT=
-      - ALERTA_KEY=
-      - CONFIGS_PATH=examples
-      - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
-      - SCHEDULER_INTERVAL=2
+    env_file:
+      - ".env.docker"
+    healthcheck:
+      test: "curl localhost:8000/"
+      interval: "60s"
+      timeout: "3s"
+      start_period: "5s"
+      retries: 3
     ports:
       - "8000:8000"
+    volumes:
+      - .:/opt/
+      - /var/log:/var/log/
     networks:
       - runs-net
     depends_on:
       - redis
-    restart: always
+    restart: unless-stopped
+    stop_grace_period: 3s
 
   runs-worker:
     container_name: runs-worker
-    build:
-      context: .
-      dockerfile: Dockerfile.worker
-    environment:
-      - ALERTA_ENDPOINT=
-      - ALERTA_KEY=
-      - CELERY_BROKER=redis://redis:6379/0
-      - CELERY_BACKEND=redis://redis:6379/0
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile.worker
+    build: .
+    command: bash worker.sh docker
+    env_file:
+      - ".env.docker"
+    volumes:
+      - .:/opt/
     networks:
       - runs-net
     depends_on:
       - redis
-    restart: always
+      - runs
+    restart: unless-stopped
+    stop_grace_period: 3s
 
   redis:
     container_name: redis
-    image: redis:latest
+    image: redis:5.0.4-stretch
     command: ["redis-server", "--appendonly", "yes"]
     hostname: redis
     ports:
@@ -45,11 +53,11 @@ services:
       - redis-data:/data
     networks:
       - runs-net
-    restart: always
+    restart: unless-stopped
+    stop_grace_period: 3s
 
 networks:
   runs-net:
-    driver: "bridge"
 
 volumes:
-  redis-data:
+  redis-data: {}

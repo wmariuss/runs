@@ -1,11 +1,11 @@
 alerta:
   general:
     python_script:
-      run: python /Users/mariuss/work/dev/runs/examples/scripts/run_alerta_test.py
+      run: python /opt/work/dev/runs/examples/scripts/run_alerta_test.py
     bash_script:
-      run: bash /Users/mariuss/work/dev/runs/examples/scripts/run.sh
+      run: bash /opt/work/dev/runs/examples/scripts/run.sh
   python:
-      run: python /Users/mariuss/work/dev/runs/examples/scripts/run.py
+      run: python /opt/work/dev/runs/examples/scripts/run.py
       event: ScriptDown
       service:
         - File
@@ -20,7 +20,7 @@ alerta:
           severity: normal
           value: FileUp
   bash:
-      run: bash /Users/mariuss/work/dev/runs/examples/scripts/run.sh
+      run: bash /opt/work/dev/runs/examples/scripts/run.sh
       event: FileDown
       service:
         - File
