@@ -20,17 +20,27 @@ Check [docs](docs/) dir for available services.
 
 ## Install
 
-Development
+Local
 
 * `pip install pipenv`
-* `pipenv install --dev`
-* `pipenv run bash start.sh local`
+* `pipenv install`
+
+Docker
+
+* `docker-compose build`
 
 ## Usage
 
-* Create new `.env` file (example [here](env.template))
-* `pipenv run bash start.sh`
-* `pipenv run bash worker.sh`
+Local
+
+* Copy `env.example` to `.env`
+* `pipenv run bash start.sh local`
+* `pipenv run bash worker.sh local`
+
+Docker
+
+* Copy `env.docker.example` to `.env.docker`
+* `docker-compose up -d`
 
 ## Tests
 

@@ -14,5 +14,4 @@ WORKDIR  /opt
 RUN pip install pipenv
 RUN pipenv install --deploy --system
 
-
-CMD ["bash", "worker.sh"]
+CMD ["bash", "worker.sh", "docker"]

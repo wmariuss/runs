@@ -5,6 +5,7 @@ LABEL maintainer="me@marius.xyz"
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
+ENV PYTHONUNBUFFERED 1
 
 COPY . /opt
 
