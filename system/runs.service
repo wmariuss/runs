@@ -1,5 +1,5 @@
 [Unit]
-Description=Execute any command and send the output to web services
+Description=runs
 Documentation=https://github.com/wmariuss/runs.git
 After=network.target
 
@@ -9,10 +9,14 @@ Group=mariuss
 Type=simple
 WorkingDirectory=/opt/runs
 ExecStart=/usr/local/bin/pipenv run bash start.sh local
-ExecReload=/bin/kill -HUP $MAINPID
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
 Restart=always
-TimeoutStopSec=20s
-SendSIGKILL=no
+RestartSec=90
+StartLimitInterval=200
+StartLimitBurst=3
+
 
 [Install]
 WantedBy=multi-user.target
