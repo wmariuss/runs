@@ -1,5 +1,8 @@
 # runs
 
+[![Tag](https://img.shields.io/github/v/tag/wmariuss/runs)](https://github.com/wmariuss/runs/tags)
+[![License](https://img.shields.io/github/license/wmariuss/runs)](https://github.com/wmariuss/runs/blob/master/LICENSE)
+
 Execute any script file or command as job and send the result to different web services.
 
 When I can use this tool:
