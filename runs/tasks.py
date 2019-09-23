@@ -7,58 +7,67 @@ from runs.utils import Execute
 from runs.exceptions import TaskExceptions
 
 # Move these variables to a global file
-CELERY_BROKER = os.environ.get('CELERY_BROKER', 'redis://localhost:6379/0')
-CELERY_BACKEND = os.environ.get('CELERY_BACKEND', 'redis://localhost:6379/0')
+CELERY_BROKER = os.environ.get("CELERY_BROKER", "redis://localhost:6379/0")
+CELERY_BACKEND = os.environ.get("CELERY_BACKEND", "redis://localhost:6379/0")
 
-app = celery.Celery('tasks', broker=CELERY_BROKER, backend=CELERY_BACKEND)
+app = celery.Celery("tasks", broker=CELERY_BROKER, backend=CELERY_BACKEND)
 
 execute = Execute()
 
 
 @app.task()
-def send_events_alerta(name, command, event, service, environment,
-                       text, data, **status_event):
+def send_events_alerta(
+    name, command, event, service, environment, text, data, **status_event
+):
 
     alerta = AlertaClient()
     event_data = {
-            'resource': name,
-            'event': event,
-            'environment': environment,
-            'service': service,
-            'text': text,
-            'data': data,
-            'severity': 'critical',
-            'value': 'N/A'
-        }
+        "resource": name,
+        "event": event,
+        "environment": environment,
+        "service": service,
+        "text": text,
+        "data": data,
+        "severity": "critical",
+        "value": "N/A",
+    }
 
-    status = status_event.get('status')
+    status = status_event.get("status")
     executed = execute.cmd(command)
 
     try:
-        if '0' in executed or 'OK' in executed:
-            if 'success' in status[name]:
-                event_data.update({
-                        'severity': status[name]['success']['severity'],
-                        'value': status[name]['success']['value']
-                    })
+        if "0" in executed or "OK" in executed:
+            if "success" in status[name]:
+                event_data.update(
+                    {
+                        "severity": status[name]["success"]["severity"],
+                        "value": status[name]["success"]["value"],
+                    }
+                )
         else:
-            if 'fail' in status[name]:
-                event_data.update({
-                        'severity': status[name]['fail']['severity'],
-                        'value': status[name]['fail']['value']
-                    })
+            if "fail" in status[name]:
+                event_data.update(
+                    {
+                        "severity": status[name]["fail"]["severity"],
+                        "value": status[name]["fail"]["value"],
+                    }
+                )
     except TypeError:
-        logging.error(f'Script or command executed has stdout errors.\
-                      Please check {name}')
+        logging.error(
+            f"Script or command executed has stdout errors.\
+                      Please check {name}"
+        )
     finally:
-        alerta.send_event(resource=event_data.get('resource'),
-                          event=event_data.get('event'),
-                          environment=event_data.get('environment'),
-                          service=event_data.get('service'),
-                          text=event_data.get('text'),
-                          value=event_data.get('value'),
-                          severity=event_data.get('severity'),
-                          raw_data=event_data.get('data'))
+        alerta.send_event(
+            resource=event_data.get("resource"),
+            event=event_data.get("event"),
+            environment=event_data.get("environment"),
+            service=event_data.get("service"),
+            text=event_data.get("text"),
+            value=event_data.get("value"),
+            severity=event_data.get("severity"),
+            raw_data=event_data.get("data"),
+        )
     return executed
 
 

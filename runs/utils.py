@@ -22,6 +22,6 @@ class Execute(object):
             if runit == 0:
                 status = runner.stdout
         else:
-            logging.error(f'{executable[0]} command not found')
+            logging.error(f"{executable[0]} command not found")
 
         return status

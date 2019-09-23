@@ -1,3 +1,3 @@
 #!/usr/bin/env python
 
-print('Python status: OK')
+print("Python status: OK")
