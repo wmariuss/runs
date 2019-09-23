@@ -1,7 +1,6 @@
 # runs
 
 [![Build Status](https://travis-ci.com/wmariuss/runs.svg?branch=master)](https://travis-ci.com/wmariuss/runs)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/wmariuss/runs)](https://github.com/wmariuss/runs/releases)
 [![Tag](https://img.shields.io/github/v/tag/wmariuss/runs)](https://github.com/wmariuss/runs/tags)
 [![License](https://img.shields.io/github/license/wmariuss/runs)](https://github.com/wmariuss/runs/blob/master/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
