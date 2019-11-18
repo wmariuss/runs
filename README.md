@@ -1,6 +1,7 @@
 # runs
 
 [![Build Status](https://travis-ci.com/wmariuss/runs.svg?branch=master)](https://travis-ci.com/wmariuss/runs)
+[![Docker Pulls](https://img.shields.io/docker/pulls/mariuss/runs)](https://hub.docker.com/repository/docker/mariuss/runs)
 [![Tag](https://img.shields.io/github/v/tag/wmariuss/runs)](https://github.com/wmariuss/runs/tags)
 [![License](https://img.shields.io/github/license/wmariuss/runs)](https://github.com/wmariuss/runs/blob/master/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
